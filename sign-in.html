@@ -1,0 +1,94 @@
+<script>
+  // Hàm lấy giá trị của cookie
+  function getCookie(name) {
+    var value = "; " + document.cookie;
+    var parts = value.split("; " + name + "=");
+    if (parts.length === 2) return parts.pop().split(";").shift();
+  }
+
+  if (getCookie("name")) {
+    document.querySelector("#buttonSignup").textContent = ` Xin chào ${decodeURIComponent(getCookie("name"))}`
+    document.querySelector("#buttonSignin").innerHTML = `<a class="uk-button uk-button-primary" href="backend/diecookie.php">Đăng xuất</a>`
+    document.querySelector("#mbuttonSignin").textContent = ` Xin chào ${decodeURIComponent(getCookie("name"))}`
+    document.querySelector("#menu__recipe-add").style.display = 'block'
+    document.querySelector("#menu__recipe-favorite").style.display = 'block'
+    document.querySelector("#menu__recipe-by-me").style.display = 'block'
+    document.querySelector("#menu__recipe-pending").style.display = 'block'
+  } else {
+    var urlParams = new URLSearchParams(window.location.search);
+    var error = urlParams.get('error');
+    if (error === "true") {
+      alert("Sai tài khoản mật khẩu!");
+    }
+  }
+</script>
+<!DOCTYPE html>
+<html lang="vi">
+
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MyRecipes | Đăng nhập</title>
+  <link rel="shortcut icon" type="image/png" href="img/favicon.png">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Leckerli+One&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/main.css" />
+  <script src="assets/js/uikit.js"></script>
+  <script src="assets/js/script.js"></script>
+  <link href="assets/css/bootstrap-grid.css" rel="stylesheet" crossorigin="anonymous">
+  <script src="assets/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+
+  <div class="uk-grid-collapse" data-uk-grid>
+    <div class="uk-width-1-2@m uk-padding-large uk-flex uk-flex-middle uk-flex-center" data-uk-height-viewport>
+      <div class="uk-width-3-4@s">
+        <div class="uk-text-center uk-margin-bottom">
+          <a class="uk-logo uk-text-primary uk-text-bold" href="index.html">MyRecipes</a>
+        </div>
+        <div class="uk-text-center uk-margin-medium-bottom">
+          <h1 class="uk-h2 uk-letter-spacing-small">Đăng nhập vào MyRecipes</h1>
+        </div>
+        <form class="uk-text-center" action="backend/auth.php" method="POST">
+          <div class="uk-width-1-1 uk-margin">
+            <label class="uk-form-label" for="email">Địa chỉ email</label>
+            <input id="email" name="email" class="uk-input uk-form-large uk-border-pill uk-text-center" type="email"
+              placeholder="youremail@gmail.com">
+          </div>
+          <div class="uk-width-1-1 uk-margin">
+            <label class="uk-form-label" for="password">Mật khẩu</label>
+            <input id="password" name="password" class="uk-input uk-form-large uk-border-pill uk-text-center"
+              type="password" placeholder="Nhập mật khẩu của bạn">
+          </div>
+          <div class="uk-width-1-1 uk-text-center">
+            <button class="uk-button uk-button-primary uk-button-large">Đăng nhập</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="uk-width-1-2@m uk-padding-large uk-flex uk-flex-middle uk-flex-center uk-light" data-uk-height-viewport>
+      <div class="uk-background-cover uk-background-norepeat uk-background-blend-overlay uk-background-overlay 
+      uk-border-rounded-large uk-width-1-1 uk-height-xlarge uk-flex uk-flex-middle uk-flex-center"
+        style="background-image: url(https://source.unsplash.com/7MAjXGUmaPw/600x700);">
+        <div class="uk-padding-large">
+          <div class="uk-text-center">
+            <h2 class="uk-letter-spacing-small">Xin chào, Hãy Tham Gia Cùng Chúng Tôi</h2>
+          </div>
+          <div class="uk-margin-top uk-margin-medium-bottom uk-text-center">
+            <p>Nhập thông tin cá nhân của bạn và tham gia cộng đồng nấu ăn</p>
+          </div>
+          <div class="uk-width-1-1 uk-text-center">
+            <a href="sign-up.html" class="uk-button uk-button-primary uk-button-large">Đăng Ký</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>

@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MyRecipes | </title>
+  <link rel="shortcut icon" type="image/png" href="img/favicon.png">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Leckerli+One&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/main.css" />
+  <script src="assets/js/uikit.js"></script>
+  <script src="assets/js/script.js"></script>
+  <link href="assets/css/bootstrap-grid.css" rel="stylesheet" crossorigin="anonymous">
+  <script src="assets/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+
+  <header id="header">
+  </header>
+
+  <div class="uk-section uk-section-default uk-padding-remove-top">
+    <div class="uk-container">
+      <div class="uk-grid-large row" data-uk-grid>
+        <div class="uk-width-1-2@m">
+          <div class="mx-4">
+            <h4>Xin chào, </h4>
+            <p>Khả năng sáng tạo trong nấu ăn và sẵn sàng chia sẻ những công thức độc đáo của bạn không chỉ tạo dựng kết
+              nối mạnh mẽ với cộng đồng mà còn là cách để làm cho nền ẩm thực trở nên đa dạng và thú vị. Hãy tận hưởng
+              mỗi khoảnh khắc ấm áp khi bạn tự tin chia sẻ những bí quyết nấu ăn của riêng bạn. Chúng tôi tin rằng đó là
+              cách để tạo ra những trải nghiệm ẩm thực ngon miệng và đáng nhớ, và chúng tôi sẽ đồng hành cùng bạn trong
+              hành trình đó.</p>
+            <!-- <a href="#" class="uk-button uk-button-primary uk-margin-top">Lên lịch gọi điện</a> -->
+          </div>
+          <div class="uk-background-primary uk-border-rounded-large uk-light uk-padding">
+            <form class="uk-form-stacked" action="backend/add.php?recipes=true" method="POST">
+              <div class="row">
+                <h3>Thông tin chung</h3>
+                <div class="col-md-6">
+                  <label class="uk-form-label" for="title">Tiêu đề</label>
+                  <div class="uk-form-controls">
+                    <input id="title" class="uk-input uk-border-pill" name="title" type="text" required>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <label class="uk-form-label" for="img">Link hình ảnh - <a href="https://upanh.tv/" target="_blank">Lấy
+                      link nếu là file</a></label>
+                  <div class="uk-form-controls">
+                    <input id="img" class="uk-input uk-border-pill" name="img" type="text" required>
+                  </div>
+                </div>
+              </div>
+              <div class="uk-margin-bottom">
+                <label class="uk-form-label" for="subtitle">Mô tả món ăn</label>
+                <div class="uk-form-controls">
+                  <textarea class="uk-textarea uk-border-rounded-medium" name="subtitle" id="subtitle"></textarea>
+                </div>
+              </div>
+              <div class="row">
+                <div class="uk-form-controls col-md-4">
+                  <label class="uk-form-label" for="prep_time">Chuẩn bị (phút)</label>
+                  <input class="uk-input uk-border-pill" name="prep_time" id="prep_time" type="number"
+                    min="1">
+                </div>
+                <div class="uk-form-controls col-md-4">
+                  <label class="uk-form-label" for="cook_time">Hoàn thành (phút)</label>
+                  <input class="uk-input uk-border-pill" name="cook_time" id="cook_time" type="number"
+                    min="1">
+                </div>
+                <div class="uk-form-controls col-md-4">
+                  <label class="uk-form-label" for="serving_size">Khẩu phần (người)</label>
+                  <input class="uk-input uk-border-pill" name="serving_size" id="serving_size" type="number"
+                    min="1">
+                </div>
+              </div>
+              <hr>
+              <div class="row" id="tags-container">
+                <h3>Danh mục</h3>
+                <div class="uk-margin-bottom col-md" style="min-width: 25%;">
+                  <label class="uk-form-label" for="tags[]">Danh mục 1</label>
+                  <select id="tags[]" class="uk-select uk-border-pill" name="tags[]">
+                    <option value="">1</option>
+                  </select>
+                </div>
+              </div>
+              <a id="addTagButton" class="uk-button uk-button-primary">Thêm</a>
+              <a id="removeTagButton" class="uk-button uk-button-primary">Xóa</a>
+              <hr>
+              <div class="row" id="ingredients-container">
+                <h3>Nguyên liệu</h3>
+                <div class="uk-margin-bottom col-md" style="min-width: 33.333%;">
+                  <label class="uk-form-label" for="ingredients[]">Nguyên liệu 1</label>
+                  <input class="uk-input uk-border-pill" name="ingredients[]" id="ingredients[]" type="text">
+                </div>
+              </div>
+              <a id="addIngredientButton" class="uk-button uk-button-primary">Thêm</a>
+              <a id="removeIngredientButton" class="uk-button uk-button-primary">Xóa</a>
+              <hr>
+              <div class="row" id="steps-container">
+                <h3>Thực hiện</h3>
+                <div class="uk-margin-bottom col-md" style="min-width: 50%;">
+                  <label class="uk-form-label" for="step[]">Bước 1</label>
+                  <input class="uk-input uk-border-pill" name="step[]" id="step[]" type="text">
+                </div>
+              </div>
+              <a id="addStepButton" class="uk-button uk-button-primary">Thêm</a>
+              <a id="removeStepButton" class="uk-button uk-button-primary">Xóa</a>
+              <div class="uk-text-center">
+                <input class="uk-button uk-button-warning uk-border-pill mt-4" type="submit" value="Đăng công thức">
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    var urlParams = new URLSearchParams(window.location.search);
+    var id = urlParams.get('id');
+
+    if (id) {
+      // Load nội dung các Danh mục
+      setTimeout(()=>{
+        fetch('backend/get_data.php?tags__comments=' + id)
+        .then(response => response.json())
+        .then(data => {
+          tags = document.querySelector('#tags-container .uk-margin-bottom').cloneNode(true)
+          document.querySelector('#tags-container .uk-margin-bottom').remove()
+          data.forEach((tag,index)=>{
+            var cloneDiv = tags.cloneNode(true)
+            cloneDiv.querySelector('label').textContent='Danh mục' + (index+1)
+            cloneDiv.querySelector('select').value = tag.id
+            console.log(tag.id)
+            document.querySelector('#tags-container').appendChild(cloneDiv)
+          })
+          var tagCounter = document.querySelectorAll('#tags-container div.uk-margin-bottom').length;
+        })
+      },100)
+
+      // Load nội dung các Danh mục
+      fetch('backend/get_data.php?recipes__id=' + id)
+        .then(response => response.json())
+        .then(data => {
+          item = data[0]
+          document.querySelector('form.uk-form-stacked').setAttribute('action','backend/edit.php?recipes_id='+item.id)
+          // document.querySelector('form.uk-form-stacked').action=
+          var input = document.querySelectorAll('form.uk-form-stacked input')
+          input[0].value = item.title
+          input[1].value = item.img
+          input[2].value = item.prep_time
+          input[3].value = item.cook_time
+          input[4].value = item.serving_size
+          document.querySelector('textarea.uk-textarea').textContent = item.subtitle
+          document.querySelector('#ingredients-container div').remove()
+          item.ingredients.split('||').forEach((inged, index) => {
+            var Divinged = document.createElement('div')
+            Divinged.innerHTML = `
+                <div class="uk-margin-bottom col-md" style="min-width: 33.333%;">
+                  <label class="uk-form-label" for="ingredients[]">Nguyên liệu ${index + 1}</label>
+                  <input class="uk-input uk-border-pill" name="ingredients[]" id="ingredients[]" type="text" value="${inged}">
+                </div>
+            `
+            document.querySelector('#ingredients-container').appendChild(Divinged.querySelector('div'))
+          })
+
+          document.querySelector('#steps-container div').remove()
+          item.step.split('||').forEach((step, index) => {
+            var Divstep = document.createElement('div')
+            Divstep.innerHTML = `
+                <div class="uk-margin-bottom col-md" style="min-width: 50%;">
+                  <label class="uk-form-label" for="step[]">Bước ${index + 1}</label>
+                  <input class="uk-input uk-border-pill" name="step[]" id="step[]" type="text" value="${step}">
+                </div>
+            `
+            document.querySelector('#steps-container').appendChild(Divstep.querySelector('div'))
+          })
+          stepCounter = document.querySelectorAll('#steps-container div.uk-margin-bottom').length;
+          ingredientCounter = document.querySelectorAll('#ingredients-container div.uk-margin-bottom').length;
+          
+        })
+    }
+  </script>
+  <script>
+    function getCookie(name) {
+      var value = "; " + document.cookie;
+      var parts = value.split("; " + name + "=");
+      if (parts.length === 2) return parts.pop().split(";").shift();
+    }
+    document.querySelector('.mx-4 h4').textContent = 'Xin chào, ' + decodeURIComponent(getCookie("name"))
+    // Lấy tham chiếu đến phần tử button và phần tử chứa nguyên liệu
+    const addIngredientButton = document.getElementById("addIngredientButton");
+    const removeIngredientButton = document.getElementById("removeIngredientButton");
+    const ingredientsContainer = document.getElementById("ingredients-container");
+
+
+    var ingredientCounter = 1; // Biến đếm nguyên liệu
+
+    // Thêm trường nguyên liệu khi nút được nhấn
+    addIngredientButton.addEventListener("click", function () {
+      ingredientCounter++;
+
+      const newIngredientField = document.createElement("div");
+      newIngredientField.classList.add("uk-margin-bottom", "col-md");
+      newIngredientField.style.minWidth = "33.333%";
+      newIngredientField.innerHTML = `
+          <label class="uk-form-label" for="ingredients[]">Nguyên liệu ${ingredientCounter}</label>
+          <input class="uk-input uk-border-pill" name="ingredients[]" id="ingredients[]" type="text">
+      `;
+
+      ingredientsContainer.appendChild(newIngredientField);
+    });
+
+    removeIngredientButton.addEventListener("click", function () {
+      data = ingredientsContainer.querySelectorAll(".uk-margin-bottom")
+      data[data.length - 1].remove()
+      ingredientCounter--
+    });
+
+    // Lấy tham chiếu đến phần tử button và phần tử chứa nguyên liệu
+    const addStepButton = document.getElementById("addStepButton");
+    const removeStepButton = document.getElementById("removeStepButton");
+    const StepsContainer = document.getElementById("steps-container");
+
+    var stepCounter = 1;
+    // Thêm trường nguyên liệu khi nút được nhấn
+    addStepButton.addEventListener("click", function () {
+      stepCounter++;
+
+      const newStepField = document.createElement("div");
+      newStepField.classList.add("uk-margin-bottom", "col-md");
+      newStepField.style.minWidth = "50%";
+      newStepField.innerHTML = `
+          <label class="uk-form-label" for="step[]">Bước ${stepCounter}</label>
+          <input class="uk-input uk-border-pill" name="step[]" id="step[]" type="text">
+      `;
+
+      StepsContainer.appendChild(newStepField);
+    });
+
+    removeStepButton.addEventListener("click", function () {
+      data = StepsContainer.querySelectorAll(".uk-margin-bottom")
+      data[data.length - 1].remove()
+      stepCounter--
+    });
+
+
+    // Load nội dung các Danh mục
+    fetch('backend/get_data.php?table=tags')
+      .then(response => response.json())
+      .then(data => {
+        let DivtoClone = document.querySelector("#tags-container option").cloneNode(true);
+        document.querySelector("#tags-container option").remove()
+        data.forEach(item => {
+          let cloneDiv = DivtoClone.cloneNode(true)
+          cloneDiv.textContent = item.name;
+          cloneDiv.value = item.id;
+          document.querySelector("#tags-container select").appendChild(cloneDiv)
+        })
+        // Lấy tham chiếu đến phần tử button và phần tử chứa nguyên liệu
+        const addtagButton = document.getElementById("addTagButton");
+        const removetagButton = document.getElementById("removeTagButton");
+        const tagsContainer = document.getElementById("tags-container");
+
+        var tagCounter = 1; // Biến đếm nguyên liệu
+        let tags_container = document.querySelector('#tags-container select').cloneNode(true)
+        // Thêm trường nguyên liệu khi nút được nhấn
+        addtagButton.addEventListener("click", function () {
+          tagCounter++;
+
+          var cloneDiv = tags_container.cloneNode(true)
+          const newtagField = document.createElement("div");
+          newtagField.classList.add("uk-margin-bottom", "col-md");
+          newtagField.style.minWidth = "25%";
+
+          newtagField.innerHTML = `
+          <label class="uk-form-label" for="tags[]">Danh mục ${tagCounter}</label>
+          ${cloneDiv.outerHTML}
+      `;
+
+          tagsContainer.appendChild(newtagField);
+        });
+
+        removetagButton.addEventListener("click", function () {
+          data = tagsContainer.querySelectorAll(".uk-margin-bottom")
+          data[data.length - 1].remove()
+          tagCounter--
+        });
+      })
+  </script>
+
+  <footer class="uk-section uk-section-default" id="footer">
+  </footer>
+
+  <div id="offcanvas" data-uk-offcanvas="flip: true; overlay: true">
+  </div>
+
+</body>
+
+</html>

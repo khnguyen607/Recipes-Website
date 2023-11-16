@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+    <script src="assets/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6">
+                <img src="assets/img/img1.png" class="img-fluid" alt="img1">
+            </div>
+            <div class="col-md-6 d-flex justify-content-center align-items-center">
+                <form class="w-50" action="#">
+                    <img src="assets/img/logo.png" alt="" class="img-fluid w-50 my-5">
+                    <div class="mb-3">
+                        <h3>Tạo tài khoản</h3>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Địa chỉ Email</label>
+                        <input type="email" class="form-control" id="email" placeholder="yourname@example.com">
+                        <div class="alert alert-danger d-flex align-items-center d-none" role="alert"
+                            id="error-message">
+                            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:">
+                                <use xlink:href="#exclamation-triangle-fill" />
+                            </svg>
+                            <div>
+                                Email đã tồn tại
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Mật khẩu</label>
+                        <input type="password" class="form-control" id="password" placeholder="Nhập mật khẩu của bạn"
+                            oninput="checkPass()">
+                    </div>
+                    <div class="mb-3">
+                        <p id="criteria1">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"style="fill: #aeb9cb;"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512z" /></svg>
+                            <strong>Ít nhất 8 ký tự</strong>
+                        </p>
+                        <p id="criteria2">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512" style="fill: #34d56a;"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z" /></svg>
+                            <strong>Mật khẩu không là địa chỉ Email</strong>
+                        </p>
+                        <p id="criteria3">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"style="fill: #aeb9cb;"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512z" /></svg>
+                            <strong>Có một ký tự in hoa</strong>
+                        </p>
+                        <p id="criteria4">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"style="fill: #aeb9cb;"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512z" /></svg>
+                            <strong>Có một ký tự in thường</strong>
+                        </p>
+                        <p id="criteria5">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"style="fill: #aeb9cb;"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512z" /></svg>
+                            <strong>Có một chữ số</strong>
+                        </p>
+                    </div>
+                    <div class="mb-3">
+                        <button id="button" type="submit" class="btn btn-primary w-100" disabled>Đăng ký</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+        const icon1 = `<svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512" style="fill: #34d56a;"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z" /></svg>`
+        const icon2 = `<svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"style="fill: #aeb9cb;"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512z" /></svg>`
+
+        function checkPass() {
+            const password = document.getElementById("password").value; // Thay thế bằng mật khẩu thực tế từ người dùng
+
+            const criteria1 = document.getElementById("criteria1");
+            const criteria2 = document.getElementById("criteria2");
+            const criteria3 = document.getElementById("criteria3");
+            const criteria4 = document.getElementById("criteria4");
+            const criteria5 = document.getElementById("criteria5");
+            var check = 0;
+
+            if (password.length >= 8) {
+                criteria1.innerHTML = (icon1) + "<strong>Ít nhất 8 ký tự</strong>";
+                check++;
+            } else {
+                criteria1.innerHTML = (icon2) + "<strong>Ít nhất 8 ký tự</strong>";
+            }
+
+            if (!password.includes("@")) { // Thay đổi kiểm tra địa chỉ Email theo cách thích hợp
+                criteria2.innerHTML = (icon1) +"<strong>Mật khẩu không là địa chỉ Email</strong>";
+                check++;
+            } else {
+                criteria2.innerHTML = (icon2) +"<strong>Mật khẩu không là địa chỉ Email</strong>";
+            }
+
+            if (/[A-Z]/.test(password)) {
+                criteria3.innerHTML = (icon1) + "<strong>Có một ký tự in hoa</strong>";
+                check++;
+            } else {
+                criteria3.innerHTML = (icon2) + "<strong>Có một ký tự in hoa</strong>";
+            }
+
+            if (/[a-z]/.test(password)) {
+                criteria4.innerHTML = (icon1) + "<strong>Có một ký tự in thường</strong>";
+                check++;
+            } else {
+                criteria4.innerHTML = (icon2) + "<strong>Có một ký tự in thường</strong>";
+            }
+
+            if (/\d/.test(password)) {
+                criteria5.innerHTML = (icon1) + "<strong>Có một chữ số</strong>";
+                check++;
+            } else {
+                criteria5.innerHTML = (icon2) + "<strong>Có một chữ số</strong>";
+            }
+            if (check >= 5)
+                document.getElementById("button").disabled = false;
+        }
+    </script>
+</body>
+
+</html>

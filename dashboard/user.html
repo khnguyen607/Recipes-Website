@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<!-- Mirrored from demo.dashboardpack.com/MyRecipes-html/user.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 01 Nov 2023 07:09:27 GMT -->
+
+<head>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>MyRecipes</title>
+    <link rel="icon" href="img/logo.png" type="image/png">
+
+    <link rel="stylesheet" href="css/bootstrap1.min.css" />
+
+    <link rel="stylesheet" href="vendors/themefy_icon/themify-icons.css" />
+
+    <link rel="stylesheet" href="vendors/swiper_slider/css/swiper.min.css" />
+
+    <link rel="stylesheet" href="vendors/select2/css/select2.min.css" />
+
+    <link rel="stylesheet" href="vendors/niceselect/css/nice-select.css" />
+
+    <link rel="stylesheet" href="vendors/owl_carousel/css/owl.carousel.css" />
+
+    <link rel="stylesheet" href="vendors/gijgo/gijgo.min.css" />
+
+    <link rel="stylesheet" href="vendors/font_awesome/css/all.min.css" />
+    <link rel="stylesheet" href="vendors/tagsinput/tagsinput.css" />
+
+    <link rel="stylesheet" href="vendors/datatable/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" href="vendors/datatable/css/responsive.dataTables.min.css" />
+    <link rel="stylesheet" href="vendors/datatable/css/buttons.dataTables.min.css" />
+
+    <link rel="stylesheet" href="vendors/text_editor/summernote-bs4.css" />
+
+    <link rel="stylesheet" href="vendors/morris/morris.css">
+
+    <link rel="stylesheet" href="vendors/material_icon/material-icons.css" />
+
+    <link rel="stylesheet" href="css/metisMenu.css">
+
+    <link rel="stylesheet" href="css/style1.css" />
+    <link rel="stylesheet" href="css/colors/default.css" id="colorSkinCSS">
+</head>
+
+<body class="crm_body_bg">
+    <div id="sidebar"></div>
+
+    <section class="main_content dashboard_part">
+        <div class="container-fluid g-0"></div>
+
+        <div class="main_content_iner ">
+            <div class="container-fluid plr_30 body_white_bg pt_30">
+                <div class="row justify-content-center">
+                    <div class="col-lg-12">
+                        <div class="messages_box_area">
+                            <div class="messages_list">
+                                <div class="white_box overflow-auto" style="max-height: 70rem;">
+                                    <div class="white_box_tittle list_header">
+                                        <h4>Danh sách thành viên</h4>
+                                    </div>
+                                    <div class="serach_field_2">
+                                        <div class="search_inner">
+                                            <form active="#">
+                                                <div class="search_field">
+                                                    <input type="text" placeholder="Tìm kiếm thành viên theo Tên hoặc Email" oninput="search_user(this)">
+                                                </div>
+                                                <button type="submit"> <i class="ti-search"></i> </button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <ul class="list-group">
+                                        <li class="list-group-item" id="user_1" onclick="active_user(this)"
+                                            style="cursor: pointer">
+                                            <a>
+                                                <div class="message_pre_left">
+                                                    <div class="messges_info">
+                                                        <h4>Khôi Nguyên</h4>
+                                                        <p>khnguyen.job@gmail.com</p>
+                                                    </div>
+                                                </div>
+                                                <div class="messge_time">
+                                                    <span>20 công thức</span>
+                                                </div>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <script>
+                                function search_user(element){
+                                    document.querySelectorAll('ul.list-group li.list-group-item').forEach(item=>{
+                                        if ( (item.querySelector('h4').textContent.toLowerCase().includes(element.value.toLowerCase())) || (item.querySelector('p').textContent.toLowerCase().includes(element.value.toLowerCase()))) 
+                                            item.style.display="block"
+                                        else
+                                            item.style.display="none"
+                                    })
+                                }
+                            </script>
+                            <div class="messages_chat" style="display: none;">
+                                <div class="white_box ">
+                                    <div class="single_message_chat">
+                                        <div id="user_info">
+                                            <div class=".d-flex">
+                                                <h3 class="">Thông tin cá nhân</h3>
+                                                <div class="float-end">
+                                                    <a style="cursor: pointer" onclick="editactive()"><svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M471.6 21.7c-21.9-21.9-57.3-21.9-79.2 0L362.3 51.7l97.9 97.9 30.1-30.1c21.9-21.9 21.9-57.3 0-79.2L471.6 21.7zm-299.2 220c-6.1 6.1-10.8 13.6-13.5 21.9l-29.6 88.8c-2.9 8.6-.6 18.1 5.8 24.6s15.9 8.7 24.6 5.8l88.8-29.6c8.2-2.7 15.7-7.4 21.9-13.5L437.7 172.3 339.7 74.3 172.4 241.7zM96 64C43 64 0 107 0 160V416c0 53 43 96 96 96H352c53 0 96-43 96-96V320c0-17.7-14.3-32-32-32s-32 14.3-32 32v96c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V160c0-17.7 14.3-32 32-32h96c17.7 0 32-14.3 32-32s-14.3-32-32-32H96z"/></svg></a>
+                                                    <a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="1em"
+                                                        viewBox="0 0 448 512">
+                                                        <path
+                                                            d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z" />
+                                                    </svg></a>
+                                                </div>
+                                            </div>
+                                            <form action="../backend/edit.php?user_id=" method="post">
+                                                <div class="mb-3">
+                                                    <label for="name" class="form-label">Tên</label>
+                                                    <input type="text" class="form-control" id="name" disabled name="name">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="email" class="form-label">Email</label>
+                                                    <input type="email" class="form-control" id="email"
+                                                        aria-describedby="emailHelp" disabled name="email">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="password" class="form-label">Mật khẩu</label>
+                                                    <input type="text" class="form-control" id="password" disabled name="password">
+                                                </div>
+                                                <button type="submit" class="btn btn-primary d-none">Cập nhật</button>
+                                            </form>
+                                            <script>
+                                                function editactive(){
+                                                    console.log(document.querySelectorAll('#user_info form input'))
+                                                    document.querySelectorAll('#user_info form input').forEach(item=>{
+                                                        item.disabled=false
+                                                    })
+                                                    document.querySelector('#user_info form button').classList.remove('d-none')
+                                                }
+                                            </script>
+                                        </div>
+                                        <hr>
+                                        <div class="message_pre_left">
+                                            <div class="messges_info recipes_quantity">
+                                                <h4>Công thức đã chia sẻ</h4>
+                                                <p>10 công thức</p>
+                                            </div>
+                                        </div>
+                                        <div class="message_content_view red_border overflow-auto"
+                                            style="max-height: 22rem;">
+                                            <ul id="recipes_by_me">
+                                                <li>
+                                                    <a href="#">
+                                                        <div class="message_pre_left">
+                                                            <div class="message_preview_thumb">
+                                                                <img src="img/messages/1.png" alt>
+                                                            </div>
+                                                            <div class="messges_info">
+                                                                <h4>Thực phẩm bổ sung</h4>
+                                                                <p>Thời gian: </p>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="single_message_chat sender_message">
+                                        <div class="message_pre_left">
+                                            <div class="messges_info favorite_quantity">
+                                                <h4>Công thức yêu thích</h4>
+                                                <p>15 công thức</p>
+                                            </div>
+                                        </div>
+                                        <div class="message_content_view overflow-auto" style="max-height: 22rem;">
+                                            <ul id="recipes_favorite">
+                                                <li>
+                                                    <a href="#">
+                                                        <div class="message_pre_left">
+                                                            <div class="messges_info">
+                                                                <h4>Khôi Nguyên</h4>
+                                                                <p>khnguyen.job@gmail.com</p>
+                                                            </div>
+                                                            <div class="message_preview_thumb">
+                                                                <img src="img/messages/1.png" alt>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <script>
+                                function active_user(element) {
+                                    document.querySelectorAll('.list-group li.active').forEach(item => {
+                                        item.classList.remove('active')
+                                        item.setAttribute('onclick', 'active_user(this)')
+                                    })
+                                    element.classList.add('active');
+                                    element.setAttribute('onclick', '')
+                                    document.querySelector('#user_info form').action='../backend/edit.php?user_id='+element.id.substring(5)
+                                    document.querySelectorAll('#user_info a')[1].href='../backend/delete.php?user_id='+element.id.substring(5)
+                                    element.disable = true
+                                    info = document.querySelector(".messages_chat")
+                                    info.style.display = "block"
+                                    fetch('../backend/get_data.php?action=user&user__recipes_id=' + element.id.substring(5))
+                                        .then(response => response.json())
+                                        .then(data => {
+                                            info.querySelector('#name').value = data[0].name
+                                            info.querySelector('#email').value = data[0].email
+                                            info.querySelector('#password').value = data[0].password
+                                        })
+
+                                    fetch('../backend/get_data.php?action=recipes&user__recipes_id=' + element.id.substring(5))
+                                        .then(response => response.json())
+                                        .then(data => {
+                                            document.querySelector('.messges_info.recipes_quantity p').textContent = data.length + " công thức"
+                                            // DivtoClone = document.querySelector('#recipes_by_me li').cloneNode(true)
+                                            var DivtoClone = document.createElement('li')
+                                            DivtoClone.innerHTML = `                                                    
+                                                    <a href="#">
+                                                        <div class="message_pre_left">
+                                                            <div class="message_preview_thumb">
+                                                                <img src="img/messages/1.png" alt>
+                                                            </div>
+                                                            <div class="messges_info">
+                                                                <h4>Thực phẩm bổ sung</h4>
+                                                                <p>Thời gian: </p>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                `
+                                            document.querySelector('#recipes_by_me').innerHTML = ""
+                                            data.forEach(item => {
+                                                var cloneDiv = DivtoClone.cloneNode(true);
+                                                cloneDiv.querySelector('a').href = '../recipe-info.html?id='+item.id
+                                                cloneDiv.querySelector('a').setAttribute("target", "_blank")
+                                                cloneDiv.querySelector('img').src = item.img
+                                                cloneDiv.querySelector('h4').textContent = item.title
+                                                cloneDiv.querySelector('p').textContent = "Thời gian: " + item.time
+                                                document.querySelector('#recipes_by_me').appendChild(cloneDiv)
+                                            })
+                                        })
+
+                                    
+                                    fetch('../backend/get_data.php?action=favorite&user__recipes_id=' + element.id.substring(5))
+                                        .then(response => response.json())
+                                        .then(data => {
+                                            document.querySelector('.messges_info.favorite_quantity p').textContent = data.length + " công thức"
+                                            // DivtoClone1 = document.querySelector('#recipes_favorite li').cloneNode(true)
+                                            var DivtoClone1 = document.createElement('li')
+                                            DivtoClone1.innerHTML = `                                                    
+                                                    <a href="#">
+                                                        <div class="message_pre_left">
+                                                            <div class="messges_info">
+                                                                <h4>Khôi Nguyên</h4>
+                                                                <p>khnguyen.job@gmail.com</p>
+                                                            </div>
+                                                            <div class="message_preview_thumb">
+                                                                <img src="img/messages/1.png" alt>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                `
+                                            document.querySelector('#recipes_favorite').innerHTML=""
+
+                                            data.forEach(item => {
+                                                var cloneDiv = DivtoClone1.cloneNode(true);
+                                                cloneDiv.querySelector('a').href = '../recipe-info.html?id='+item.recipes_id
+                                                cloneDiv.querySelector('a').setAttribute("target", "_blank")
+                                                cloneDiv.querySelector('img').src = item.img
+                                                cloneDiv.querySelector('h4').textContent = item.title
+                                                cloneDiv.querySelector('p').textContent = "Tác giả: " + item.name
+                                                document.querySelector('#recipes_favorite').appendChild(cloneDiv)
+                                            })
+                                        })
+                                }
+                            </script>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer_part">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-12 col-sm-12">
+                            <div class="footer_iner text-center">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+
+
+
+    <script src="js/jquery1-3.4.1.min.js"></script>
+
+    <script src="js/popper1.min.js"></script>
+
+    <script src="js/bootstrap1.min.js"></script>
+
+    <script src="js/metisMenu.js"></script>
+
+    <script src="vendors/count_up/jquery.waypoints.min.js"></script>
+
+    <script src="vendors/chartlist/Chart.min.js"></script>
+
+    <script src="vendors/count_up/jquery.counterup.min.js"></script>
+
+    <script src="vendors/swiper_slider/js/swiper.min.js"></script>
+
+    <script src="vendors/niceselect/js/jquery.nice-select.min.js"></script>
+
+    <script src="vendors/owl_carousel/js/owl.carousel.min.js"></script>
+
+    <script src="vendors/gijgo/gijgo.min.js"></script>
+
+    <script src="vendors/datatable/js/jquery.dataTables.min.js"></script>
+    <script src="vendors/datatable/js/dataTables.responsive.min.js"></script>
+    <script src="vendors/datatable/js/dataTables.buttons.min.js"></script>
+    <script src="vendors/datatable/js/buttons.flash.min.js"></script>
+    <script src="vendors/datatable/js/jszip.min.js"></script>
+    <script src="vendors/datatable/js/pdfmake.min.js"></script>
+    <script src="vendors/datatable/js/vfs_fonts.js"></script>
+    <script src="vendors/datatable/js/buttons.html5.min.js"></script>
+    <script src="vendors/datatable/js/buttons.print.min.js"></script>
+    <script src="js/chart.min.js"></script>
+
+    <script src="vendors/progressbar/jquery.barfiller.js"></script>
+
+    <script src="vendors/tagsinput/tagsinput.js"></script>
+
+    <script src="vendors/text_editor/summernote-bs4.js"></script>
+    <script src="vendors/apex_chart/apexcharts.js"></script>
+
+    <script src="js/custom.js"></script>
+
+
+    <script src="js/active_chart.js"></script>
+    <script src="vendors/apex_chart/radial_active.js"></script>
+    <script src="vendors/apex_chart/stackbar.js"></script>
+    <script src="vendors/apex_chart/area_chart.js"></script>
+    <script src="vendors/apex_chart/bar_active_1.js"></script>
+    <script src="vendors/chartjs/chartjs_active.js"></script>
+
+</body>
+
+<!-- Mirrored from demo.dashboardpack.com/MyRecipes-html/user.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 01 Nov 2023 07:09:27 GMT -->
+
+</html>

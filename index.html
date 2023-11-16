@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MyRecipes</title>
+  <link rel="shortcut icon" type="image/png" href="img/favicon.png">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Leckerli+One&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/main.css" />
+  <script src="assets/js/uikit.js"></script>
+  <script src="assets/js/script.js"></script>
+  <link href="assets/css/bootstrap-grid.css" rel="stylesheet" crossorigin="anonymous">
+  <script src="assets/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+
+  <header id="header">
+  </header>
+
+  <div class="uk-container">
+    <div class="uk-border-rounded-large uk-background-top-center uk-background-cover 
+    uk-background-norepeat uk-light uk-inline uk-overflow-hidden uk-width-1-1"
+      style="background-image: url(assets/img/header.jpg);">
+      <div class="uk-position-cover uk-header-overlay"></div>
+      <div class="uk-position-relative" data-uk-grid>
+        <div class="uk-width-1-2@m uk-flex uk-flex-middle">
+          <div class="uk-padding-large uk-padding-remove-right">
+            <h1 class="uk-heading-small uk-margin-remove-top">Xin chào, bạn đang nghĩ đến điều gì?</h1>
+            <p class="uk-text-secondary">Đừng ngần ngại chia sẻ những công thức nấu ăn thú vị của bạn với cộng đồng.
+              Hãy tự tin quản lý các công thức và chia sẻ những bí quyết nấu ăn của riêng bạn.
+              Chúng tôi sẽ giúp bạn tạo nên những trải nghiệm ẩm thực độc đáo và ngon miệng.</p>
+            <a class="uk-text-secondary uk-text-600 uk-text-small hvr-forward" href="recipe-add.html">Thêm công thức mới
+              ngay<span class="uk-margin-small-left" data-uk-icon="arrow-right"></span></a>
+          </div>
+        </div>
+        <div class="uk-width-expand@m">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="uk-section uk-section-default">
+    <div class="uk-container">
+      <div data-uk-grid>
+        <div class="uk-width-1-4@m sticky-container">
+          <div data-uk-sticky="offset: 100; bottom: true; media: @m;">
+            <h2>Lọc công thức</h2>
+            <ul class="uk-nav-default uk-nav-parent-icon uk-nav-filter uk-margin-medium-top" data-uk-nav>
+              <li class="uk-parent">
+                <a href="#">Danh mục</a>
+                <ul class="uk-nav-sub">
+                  <li><a><input onchange="tagactive(this)" class="uk-checkbox" type="checkbox" value="" id=""><label
+                        for="">Thịt heo</label></a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+          <script>
+            const checkbox_tags = new Set()
+            var myObject = {};
+            // Load Danh mục của bài viết
+            fetch('backend/get_data.php?table=recipestags')
+              .then(response => response.json())
+              .then(tags => {
+                tags.forEach(item => {
+                  if (item.recipes_id) {
+                    if (myObject[item.recipes_id]) {
+                      myObject[item.recipes_id].add(item.tags_id);
+                    } else {
+                      myObject[item.recipes_id] = new Set(item.tags_id);
+                    }
+                  }
+                })
+              })
+
+            async function tagactive(element) {
+              checkbox_tags.clear()
+              element = element.parentNode.parentNode
+              if (!element.querySelector('input').checked)
+                element.classList.remove('uk-active')
+              else if (element.querySelector('input').checked)
+                element.classList.add('uk-active')
+
+              document.querySelectorAll('ul.uk-nav-sub li input').forEach(item => {
+                if (item.checked) {
+                  checkbox_tags.add(item.value)
+                }
+              })
+            }
+          </script>
+        </div>
+        <div class="uk-width-expand@m">
+          <div data-uk-grid>
+            <div class="uk-width-expand@m">
+              <form class="uk-search uk-search-default uk-width-1-1 row">
+                <div class="col-md">
+                  <span class="uk-search-icon justify-content-end"><svg xmlns="http://www.w3.org/2000/svg" height="1em"
+                    viewBox="0 0 512 512">
+                    <path
+                      d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z" />
+                  </svg></span>
+                  <input class="uk-search-input uk-text-small uk-border-rounded uk-form-large select_in" type="search"
+                    placeholder="Tìm theo tên món ăn" id="recipes_search">
+                </div>
+              </form>
+            </div>
+            <div class="uk-width-expand@m">
+              <form class="uk-search uk-search-default uk-width-1-1 row">
+                <div class="col-md">
+                  <span class="uk-search-icon justify-content-end"><svg xmlns="http://www.w3.org/2000/svg" height="1em"
+                    viewBox="0 0 512 512">
+                    <path
+                      d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z" />
+                  </svg></span>
+                  <input class="uk-search-input uk-text-small uk-border-rounded uk-form-large" type="search"
+                    placeholder="Tìm theo tên tác giả" id="user_search">
+                </div>
+              </form>
+            </div>
+            <div class="uk-width-1-3@m uk-text-right@m uk-light">
+              <select class="uk-select uk-select-light uk-width-auto uk-border-pill uk-select-primary">
+                <option>Mới nhất</option>
+                <option>Đánh giá</option>
+              </select>
+            </div>
+            <script>
+              document.querySelector('.uk-select').addEventListener('change', () => {
+                // console.log(document.querySelector('.uk-select').value)
+              })
+            </script>
+          </div>
+          <div class="uk-child-width-1-2 list uk-child-width-1-3@s " data-uk-grid>
+
+            <div class="uk-card">
+              <div class="uk-card-media-top uk-inline uk-light">
+                <img class="uk-border-rounded-medium" src="https://source.unsplash.com/-YHSwy6uqvk/300x160"
+                  alt="Course Title">
+                <div class="uk-position-cover uk-card-overlay uk-border-rounded-medium"></div>
+                <div class="uk-position-xsmall uk-position-top-right">
+                  <a onclick="heartactive(this)" class="uk-icon-button uk-like uk-position-z-index uk-position-relative"
+                    data-uk-icon="heart"></a>
+                </div>
+              </div>
+              <div>
+                <h3 class="uk-card-title uk-text-500 uk-margin-small-bottom uk-margin-top">Chef John's Turkey Sloppy
+                  Joes</h3>
+                <div class="uk-text-xsmall uk-text-muted" data-uk-grid>
+                  <div class="uk-width-auto uk-flex uk-flex-middle">
+                    <span class="uk-rating-filled" data-uk-icon="icon: star; ratio: 0.7"></span>
+                    <span class="uk-margin-xsmall-left">5.0</span>
+                    <span>(73)</span>
+                  </div>
+                  <div class="uk-width-expand uk-text-right">by <strong>John Keller</strong></div>
+                </div>
+              </div>
+              <a href="recipe-info.html" class="uk-position-cover"></a>
+            </div>
+
+          </div>
+          <style>
+            .toast-container {
+              position: fixed;
+              top: 20px;
+              right: 20px;
+              max-width: 300px;
+              border-radius: 5px;
+              padding: 10px;
+              display: none;
+              color: #fff;
+              z-index: 99999;
+            }
+
+            .toast-header {
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              margin-top: 5px;
+            }
+
+            .toast-header button {
+              background: none;
+              border: none;
+              color: #fff;
+              cursor: pointer;
+            }
+
+            .toast-body {
+              padding: 10px;
+            }
+          </style>
+
+          <div class="toast-container uk-background-primary" id="custom-toast">
+            <div class="toast-header">
+              <strong class="mr-auto">Thông báo</strong>
+              <button onclick="hideToast()">x</button>
+            </div>
+            <div class="toast-body">
+              Xin chào! Đây là một toast thông báo đơn giản.
+            </div>
+          </div>
+
+          <script>
+            // Hiển thị toast
+            function showToast(content) {
+              var toast = document.getElementById('custom-toast');
+              document.querySelector('#custom-toast .toast-body').innerHTML = content;
+              toast.style.display = 'block';
+            }
+
+            // Ẩn toast
+            function hideToast() {
+              var toast = document.getElementById('custom-toast');
+              toast.style.display = 'none';
+            }
+          </script>
+
+          <script>
+            function getCookie(name) {
+              var value = "; " + document.cookie;
+              var parts = value.split("; " + name + "=");
+              if (parts.length === 2) return parts.pop().split(";").shift();
+            }
+
+            function heartactive(element) {
+              if (!getCookie('name')) {
+                showToast('Vui lòng đăng nhập để có thể thêm công thức vào yêu thích!');
+                setTimeout(hideToast, 5000);
+                return
+              }
+              if (element.classList.contains("heart-active")) {
+                element.classList.remove('heart-active')
+                fetch('backend/delete.php?favorite=' + element.getAttribute("recipes_id"))
+                  .then(response => response.json())
+              } else {
+                element.classList.add('heart-active')
+                // Tạo một đối tượng FormData và thêm dữ liệu form vào đó
+                const formData = new FormData();
+                formData.append("recipes_id", element.getAttribute("recipes_id"));
+
+                // Thực hiện yêu cầu POST sử dụng Fetch
+                fetch('backend/add.php?favorite=true', {
+                  method: "post",
+                  body: formData
+                })
+                  .then(response => response.json())
+              }
+            }
+          </script>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <footer class="uk-section uk-section-default" id="footer">
+  </footer>
+
+  <div id="offcanvas" data-uk-offcanvas="flip: true; overlay: true">
+  </div>
+</body>
+
+</html>
